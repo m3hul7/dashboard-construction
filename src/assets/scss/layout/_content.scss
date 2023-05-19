@@ -1,1 +1,14 @@
 // Main styles goes here
+@media only screen and (max-width: 768px) {
+    
+    #timeChart, #costChart {
+        border-bottom: 1px solid $light;
+    }
+} 
+@media only screen and (max-width: 992px) {
+    
+    #timeChart {
+        border-bottom: 1px solid $light;
+        border-left: 1px solid $light;
+    }
+} 

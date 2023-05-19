@@ -1,5 +1,15 @@
 // Global styles goes here
-
-body {
-    height: $height-100vh;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // font-family: $font-family;
 }
+html,body{
+    // height: 100%;
+    height: $height-100vh;
+    overflow: hidden;
+}
+// body {
+//     height: $height-100vh;
+// }
