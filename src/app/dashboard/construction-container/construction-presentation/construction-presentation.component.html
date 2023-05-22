@@ -1,0 +1,192 @@
+<section class="d-flex flex-row h-100">
+    <aside [ngClass]="{ 'aside': true, 'aside-dark': theme === 'dark', 'aside-light': theme === 'light' }"
+        class="d-flex flex-column justify-content-between bg-dark">
+        <nav>
+            <ul class="nav d-flex flex-column align-items-center border-bottom border-light">
+                <li class="nav-item border-bottom border-light">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-expand"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-home"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-clock"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav d-flex flex-column align-items-center border-bottom border-light">
+                <li class="nav-item">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-users"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-shopping-bag"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="nav d-flex flex-column align-items-center">
+                <li class="nav-item">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-plus"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link p-3">
+                        <span class="fs-5 icon-help-circle"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <section class="d-flex flex-column flex-grow-1 overflow-hidden">
+        <header [ngClass]="{ 'header': true, 'header-dark': theme === 'dark', 'header-light': theme === 'light' }"
+            class="d-flex justify-content-center align-items-center bg-secondary border-bottom border-light">
+            <div class="fs-4 ps-3 text-light">
+                Govalle Construction
+            </div>
+            <nav class="flex-grow-1">
+                <ul class="nav justify-content-center align-items-center">
+                    <li class="nav-item">
+                        <a href="" class="nav-link p-3">
+                            <span class="fs-5 icon-list"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link p-3">
+                            <span class="fs-5 icon-bar-chart"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link p-3">
+                            <span class="fs-5 icon-bar-chart-2"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link p-3 active">
+                            <span class="fs-5 icon-list_alt"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link p-3">
+                            <span class="fs-5 icon-calendar"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link p-3">
+                            <span class="fs-5 icon-file"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" (click)="toggleTheme()" type="checkbox"
+                        id="flexSwitchCheckDefault">
+                </div>
+            </div>
+        </header>
+        <main [ngClass]="{ 'header': true, 'main-dark': theme === 'dark', 'main-light': theme === 'light' }"
+            class="flex-grow-1 w-100 bg-secondary text-light overflow-auto">
+                <div class="row g-0">
+                    <div class="col-12 col-md-6 col-lg-4 p-4 border-bottom border-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Health</h2>
+                            <div>
+                                <span class="fs-5 icon-help-circle"></span>
+                            </div>
+                        </div>
+                        <table class="table text-light">
+                            <tbody>
+                                <tr>
+                                    <td>Time</td>
+                                    <td>14% ahead of schedule.</td>
+                                </tr>
+                                <tr>
+                                    <td>Tasks</td>
+                                    <td>12 tasks to be completed.</td>
+                                </tr>
+                                <tr>
+                                    <td>Workload</td>
+                                    <td>0 task overdue.</td>
+                                </tr>
+                                <tr>
+                                    <td>Progress</td>
+                                    <td>14% complete.</td>
+                                </tr>
+                                <tr style="border-bottom: transparent">
+                                    <td>Cost</td>
+                                    <td>42% under budget.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="taskChart" class="col-12 col-md-6 col-lg-4 p-4 border border-light border-top-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Tasks</h2>
+                            <div>
+                                <span class="fs-5 icon-arrows"></span>
+                                <span class="fs-5 ps-2 icon-settings"></span>
+                                <span class="fs-5 ps-2 icon-help-circle"></span>
+                            </div>
+                        </div>
+                        <app-chart [chartData]="doughnutChart"></app-chart>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 p-4 border-bottom border-light ">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Progress</h2>
+                            <div>
+                                <span class="fs-5 icon-arrows"></span>
+                                <span class="fs-5 ps-2 icon-settings"></span>
+                                <span class="fs-5 ps-2 icon-help-circle"></span>
+                            </div>
+                        </div>
+                        <app-chart [chartData]="progressChart"></app-chart>
+                    </div>
+                    <!-- </div> -->
+                    <!-- <div class="row g-0 h-50"> -->
+                    <div id="timeChart" class="col-12 col-md-6 col-lg-4 p-4 border-start-md border-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Time</h2>
+                            <div>
+                                <span class="fs-5 icon-arrows"></span>
+                                <span class="fs-5 ps-2 icon-settings"></span>
+                                <span class="fs-5 ps-2 icon-help-circle"></span>
+                            </div>
+                        </div>
+                        <app-chart [chartData]="timeChart"></app-chart>
+                    </div>
+                    <div id="costChart" class="col-12 col-md-6 col-lg-4 p-4 border-end border-start border-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Cost</h2>
+                            <div>
+                                <span class="fs-5 icon-arrows"></span>
+                                <span class="fs-5 ps-2 icon-settings"></span>
+                                <span class="fs-5 ps-2 icon-help-circle"></span>
+                            </div>
+                        </div>
+                        <app-chart [chartData]="costChart"></app-chart>
+                    </div>
+                    <div id="workoutChart" class="col-12 col-md-6 col-lg-4 p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Workload</h2>
+                            <div>
+                                <span class="fs-5 icon-arrows"></span>
+                                <span class="fs-5 ps-2 icon-settings"></span>
+                                <span class="fs-5 ps-2 icon-help-circle"></span>
+                            </div>
+                        </div>
+                        <app-chart [chartData]="workoutChart"></app-chart>
+                    </div>
+                </div>
+        </main>
+    </section>
+</section>

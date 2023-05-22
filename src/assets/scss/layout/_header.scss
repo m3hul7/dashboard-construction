@@ -1,1 +1,14 @@
 // Header area style
+.nav {
+    &-link {
+        color: $light;
+        border: 2px inset transparent
+    }
+    &-link:hover {
+        color: $light;
+        border: 2px inset $success
+    }
+}
+.active {
+    border: 2px inset $success
+}
