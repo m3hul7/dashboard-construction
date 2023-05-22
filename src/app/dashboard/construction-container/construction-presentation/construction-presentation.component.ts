@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Chart, ChartData } from 'chart.js';
+// import { Chart, ChartData } from 'chart.js';
 
 @Component({
   selector: 'app-construction-presentation',
@@ -9,7 +9,46 @@ import { Chart, ChartData } from 'chart.js';
 export class ConstructionPresentationComponent {
   white: string = '#ffffff';
   black: string = '#141313';
+  private readonly THEME_KEY = 'theme';
+  public theme: string = ''
+  constructor() {
+    const currentTheme = this.getTheme();
+    this.theme = currentTheme
+  }
+  public toggleTheme(): void {
+    // document.body.classList.toggle('dark-theme');
+    const currentTheme = this.getTheme();
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    this.setTheme(newTheme);
+    this.theme = newTheme
+    console.log(this.theme)
 
+  }
+  private setTheme(theme: string): void {
+    localStorage.setItem(this.THEME_KEY, theme);
+    this.applyTheme(theme);
+  }
+
+  private getTheme(): string {
+    return localStorage.getItem(this.THEME_KEY) || 'light';
+  }
+
+  private applyTheme(theme: string): void {
+    console.log('apply theme')
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  private legendMargin = {
+    id: 'legendMargin',
+    beforeInit(chart: any): any {
+      console.log(chart.legend.fit)
+      const fitValue = chart.legend.fit;
+      chart.legend.fit = function fit() {
+        fitValue.bind(chart.legend)()
+        return this.height += 50
+      }
+    }
+  }
 
   public doughnutChart: any = {
     type: 'doughnut',
@@ -18,28 +57,38 @@ export class ConstructionPresentationComponent {
         {
           data: [10, 6, 2],
           backgroundColor: ['#9da4ae', '#68cb69', '#4ccbc2'],
-          borderWidth: 2,
-          borderRadius: 3
+          borderWidth: 0,
+          borderRadius: 3,
+          offset: '10',
+          spacing: 3,
+          cutout: '85%',
+          radius: 100,
         }
       ],
       labels: ['Not Started', 'Complete', 'In Progress'],
     },
+
     options: {
-      plugins: {
+      plugins:
+      {
         datalabels: {
+          font: {
+            size: 18,
+          },
+          padding: 12,
           anchor: 'end',
-          align: 'end', 
-          color: (value:any) => {
+          align: 'end',
+          color: (value: any) => {
             return value.dataset.backgroundColor[value.dataIndex]
-          }  
-        },  
+          }
+        },
         legend: {
           labels: {
             usePointStyle: true
           }
         }
       },
-      cutout: 140,
+      cutout: 130,
       responsive: true,
       maintainAspectRatio: false
     }
@@ -56,20 +105,7 @@ export class ConstructionPresentationComponent {
           backgroundColor: [
             '#68cb69',
             '#68cb69',
-            '#f15048',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
-          ],
-          borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)'
+            '#f15048'
           ],
           borderWidth: 1
         }
@@ -78,9 +114,12 @@ export class ConstructionPresentationComponent {
     options: {
       plugins: {
         datalabels: {
+          color: (value: any) => {
+            return value.dataset.backgroundColor[value.dataIndex]
+          },
           anchor: 'start',
           align: 'start',
-          formatter: (value:number) => {
+          formatter: (value: number) => {
             return value + '%'
           },
         },
@@ -91,6 +130,9 @@ export class ConstructionPresentationComponent {
       indexAxis: 'y',
       scales: {
         y: {
+          border: {
+            display: false
+        },
           grid: {
             display: false
 
@@ -98,7 +140,8 @@ export class ConstructionPresentationComponent {
           beginAtZero: true,
           ticks: {
             crossAlign: "far",
-            padding: 30,  
+            padding: 30,
+            color: '#9da4ae',
           }
         },
         x: {
@@ -130,7 +173,6 @@ export class ConstructionPresentationComponent {
         },
         {
           label: 'Behind',
-          // data: [0, 0, 0, 0, 0, 0],
           backgroundColor: [
             '#f8a646',
             '#f8a646',
@@ -164,7 +206,7 @@ export class ConstructionPresentationComponent {
         datalabels: {
           anchor: 'start',
           align: 'start',
-          formatter: (value:number) => {
+          formatter: (value: number) => {
             return value + '%'
           },
         },
@@ -186,21 +228,19 @@ export class ConstructionPresentationComponent {
             crossAlign: "far",
           }
         },
-
         x: {
           border: {
             display: false
           },
           grid: {
+            color: '#9da4ae',
             drawBorder: false
           },
           stacked: true,
-
-          // type: 'category', // Use category scale for the x-axis,
-          min: -100, // Set the minimum value for the x-axis
-          max: 100, // Set the maximum value for the x-axis
+          min: -100,
+          max: 100,
           ticks: {
-            stepSize: 25, // Set the step size between ticks
+            stepSize: 25,
             callback: (value: number) => {
               return Math.abs(value)
             }
@@ -212,7 +252,7 @@ export class ConstructionPresentationComponent {
     },
   }
 
-  public costChart: any= {
+  public costChart: any = {
     type: 'bar',
     data: {
       labels: [''],
@@ -251,6 +291,9 @@ export class ConstructionPresentationComponent {
       },
       scales: {
         y: {
+          grid: {
+            color: '#9da4ae',
+          },
           border: {
             display: false
           },
@@ -309,14 +352,16 @@ export class ConstructionPresentationComponent {
       ]
     },
     options: {
-      plugins: {
+      plugins:
+      {
         datalabels: {
           display: false
         },
         legend: {
           align: 'start',
           labels: {
-            usePointStyle: true
+            usePointStyle: true,
+            // padding: 50
           },
         }
       },
@@ -332,8 +377,11 @@ export class ConstructionPresentationComponent {
             padding: 30,
           }
         },
-        
+
         x: {
+          grid: {
+            color: '#9da4ae'
+          },
           border: {
             display: false
           },
@@ -343,7 +391,6 @@ export class ConstructionPresentationComponent {
           ticks: {
             beginAtZero: true,
             stepSize: 2,
-
           }
         },
       },
@@ -351,22 +398,6 @@ export class ConstructionPresentationComponent {
       maintainAspectRatio: false,
 
     },
-  }
-
-  setDarkTheme(isThemeDark: boolean) {
-
-    if (isThemeDark == true) {
-      console.log('Dark Used');
-      document.documentElement.style.setProperty('--white-color', this.black);
-      document.documentElement.style.setProperty('--black-color', this.white);
-      localStorage.setItem('dark', 'true');
-    }
-    else {
-      console.log('Light Used');
-      document.documentElement.style.setProperty('--white-color', this.white);
-      document.documentElement.style.setProperty('--black-color', this.black);
-      localStorage.setItem('dark', 'false');
-    }
   }
 }
 
