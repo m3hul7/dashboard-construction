@@ -1,4 +1,9 @@
 // Main styles goes here
+@media only screen and (max-width: 576px) {
+  #brand-name {
+    display: none;
+  }
+} 
 @media only screen and (max-width: 768px) {
 
   #timeChart,
@@ -37,70 +42,52 @@
 
 
 // Update the background color of the app
-body[data-theme="dark"] {
-  background-color: hsl(0, 63%, 45%);
-  color: #ffffff;
-  transition: .4s all ease-in-out;
+
+
+html[data-theme="light"] {
+  body {
+    --bs-light-rgb: 0, 0, 0;
+    background-color: #ffffff !important;
+    transition: .4s all ease-in-out;
+  }
+  .nav-link {
+    color: black;
+  }
+  #workoutChart {
+    border-color: black !important;
+  }
+  .header-light {
+    background-color: #ffffff !important;
+
+    transition: .4s all ease-in-out;
+  }
+
+  .aside-light {
+    background-color: #ffffff !important;
+    border-right: 1px solid $dark;
+    transition: .4s all ease-in-out;
+  }
+
+  .main-light {
+    background-color: #ffffff !important;
+    transition: .4s all ease-in-out;
+  }
 }
 
-// Customize specific components or elements for dark mode
-.header[data-theme="dark"],
-.header-dark {
-  background-color: $secondary !important;
-  color: #ffffff;
-  transition: .4s all ease-in-out;
+html[data-theme="dark"] {
+  .header-dark {
+    background-color: $secondary !important;
+    --bs-light-rgb: 157, 164, 174;
+    transition: .4s all ease-in-out;
+  }
+  .aside-dark {
+    background-color: $dark !important;
+    color: #000000;
+    border-right: 1px solid $light;
+    transition: .4s all ease-in-out;
+  }
+  .main-dark {
+    background-color: $secondary !important;
+    transition: .4s all ease-in-out;
+  }
 }
-.aside[data-theme="dark"],
-.aside-dark {
-  background-color: $dark !important;
-  // color: #000000;
-  // border-right: 1px solid $light;
-  transition: .4s all ease-in-out;
-}
-
-.main[data-theme="dark"],
-.main-dark {
-  background-color: $secondary !important;
-  transition: .4s all ease-in-out;
-}
-
-.button[data-theme="dark"] {
-  background-color: #555555;
-  color: #ffffff;
-  transition: .4s all ease-in-out;
-}
-
-// Update the background color of the app
-body[data-theme="light"] {
-  background-color: #ffffff;
-  color: #000000;
-  // --text-color: red;
-  transition: .4s all ease-in-out;
-}
-
-// Customize specific components or elements for light mode
-.header[data-theme="light"],
-.header-light {
-  background-color: #ffffff !important;
-  // color: #000000;
-  transition: .4s all ease-in-out;
-}
-
-.aside[data-theme="light"],
-.aside-light {
-  background-color: #ffffff !important;
-  // color: #000000;
-  border-right: 1px solid $light;
-  transition: .4s all ease-in-out;
-}
-
-.main[data-theme="light"],
-.main-light {
-  background-color: #ffffff !important;
-  transition: .4s all ease-in-out;
-}
-
-// .button[data-theme="light"] {
-//   background-color: #dddddd;
-//   color: #000000;
-// }
