@@ -30,7 +30,7 @@ export class ConstructionPresentationComponent {
   }
 
   private getTheme(): string {
-    return localStorage.getItem(this.THEME_KEY) || 'light';
+    return localStorage.getItem(this.THEME_KEY) || 'dark';
   }
 
   private applyTheme(theme: string): void {
