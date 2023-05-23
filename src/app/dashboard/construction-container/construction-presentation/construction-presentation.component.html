@@ -1,9 +1,9 @@
 <section class="d-flex flex-row h-100">
     <aside [ngClass]="{ 'aside': true, 'aside-dark': theme === 'dark', 'aside-light': theme === 'light' }"
-        class="d-flex flex-column justify-content-between bg-dark">
-        <nav>
+        class="d-flex flex-column bg-dark">
+        <nav class="d-flex flex-column h-100">
             <ul class="nav d-flex flex-column align-items-center border-bottom border-light">
-                <li class="nav-item border-bottom border-light">
+                <li class="nav-item border-bottom border-light header">
                     <a href="" class="nav-link p-3">
                         <span class="fs-5 icon-expand"></span>
                     </a>
@@ -13,13 +13,11 @@
                         <span class="fs-5 icon-home"></span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item border-bottom border-light">
                     <a href="" class="nav-link p-3">
                         <span class="fs-5 icon-clock"></span>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav d-flex flex-column align-items-center border-bottom border-light">
                 <li class="nav-item">
                     <a href="" class="nav-link p-3">
                         <span class="fs-5 icon-users"></span>
@@ -31,9 +29,7 @@
                     </a>
                 </li>
             </ul>
-        </nav>
-        <nav>
-            <ul class="nav d-flex flex-column align-items-center">
+            <ul class="nav d-flex flex-column align-items-center mt-auto">
                 <li class="nav-item">
                     <a href="" class="nav-link p-3">
                         <span class="fs-5 icon-plus"></span>
@@ -44,17 +40,23 @@
                         <span class="fs-5 icon-help-circle"></span>
                     </a>
                 </li>
+                <li>
+                    <div class="form-check form-switch d-flex justify-content-center">
+                        <input class="form-check-input" (click)="toggleTheme()" type="checkbox"
+                            id="flexSwitchCheckDefault">
+                    </div>
+                </li>
             </ul>
         </nav>
     </aside>
     <section class="d-flex flex-column flex-grow-1 overflow-hidden">
         <header [ngClass]="{ 'header': true, 'header-dark': theme === 'dark', 'header-light': theme === 'light' }"
-            class="d-flex justify-content-center align-items-center bg-secondary border-bottom border-light flex-sm-column flex-md-row">
+            class="header d-flex justify-content-center align-items-center bg-secondary border-bottom border-light flex-sm-column flex-md-row">
             <div id="brand-name" class="fs-4 ps-3 text-light text-nowrap">
                 Govalle Construction
             </div>
             <section class="flex-grow-1 d-flex align-items-center">
-                <nav class="flex-grow-1">
+                <nav class="d-none d-md-flex flex-grow-1">
                     <ul class="nav justify-content-center align-items-center flex-nowrap">
                         <li class="nav-item">
                             <a href="" class="nav-link p-3">
@@ -88,12 +90,6 @@
                         </li>
                     </ul>
                 </nav>
-                <div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" (click)="toggleTheme()" type="checkbox"
-                            id="flexSwitchCheckDefault">
-                    </div>
-                </div>
             </section>
         </header>
         <main [ngClass]="{ 'header': true, 'main-dark': theme === 'dark', 'main-light': theme === 'light' }"
